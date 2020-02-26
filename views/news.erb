@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Google Fonts -->
+    <!-- Swap out "Roboto" for the font(s) you want to use -->
+    <link href="https://fonts.googleapis.com/css?family=Lora|Montserrat|Muli|Roboto&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" crossorigin="anonymous">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <!-- Your own CSS -->
+    <link rel="stylesheet" href="/styles.css">
+
+    <title>News</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-light sticky-top">
+        <div class="container">
+        <a class="navbar-brand" href="/">
+            <i class="far fa-newspaper"></i> Newspaper App
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav mr-auto">
+            <a class="nav-item nav-link active" href="/">  Home <span class="sr-only">(current)</span></a>
+            </div>
+        </div>
+        </div>
+    </nav>
+
+    <div class = "container mt-5">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container class="title_text"">
+                <h1 class="display-4"> <%=@mylocation%> Briefing</h1>
+                <p class="lead"> <%=Time.now.strftime("%m/%d/%Y")%> </p>
+                <a class="btn btn-secondary btn-md btn-center" href='/' role="button"> Change Location </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class = "row">    
+            <div class = "col-md-12">
+                <h1>Your Top News Stories</h1>
+                <% for i in @top_5_articles %>
+                <ul>
+                <li><a href=<%=i["url"]%>><%= i["title"]%></a></li>
+                </ul>
+                <% end %>
+            </div>
+        </div>
+        <div class = "row">
+            <div class ="col-md-12">
+                <h1> <%=@mylocation%> Weather</h1>
+                <h3> Currently: </h3>
+                    <ul>
+                        <li> <%=@current_summary%> </li>
+                        <li> Temperature: <%=@current_temp%>*F </li>
+                    </ul>
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col md-12">
+             <h3> Weekly Forecast: </h3>
+            </div>
+        </div>
+        <div class = "row">
+                <% for day in @daily_forecast %>
+                <div class = "col-md-2">
+                <div class = "card">
+                    
+                    <div class = "card-body">  
+                        <%if day["summary"].downcase.include?("cloud") || day["summary"].downcase.include?("overcast")
+                            @my_icon ="fas fa-cloud fa-4x"
+                        elsif day["summary"].downcase.include?("snow") || day["summary"].downcase.include?("flurr")
+                            @my_icon = "far fa-snowflake fa-4x"
+                        elsif day["summary"].downcase.include?("rain") || day["summary"].downcase.include?("shower")
+                            @my_icon = "fas fa-cloud-showers-heavy fa-4x"
+                        else
+                            @my_icon = "fas fa-sun fa-4x"
+                        end %>
+                        <i class = "<%= @my_icon %>"></i>
+                        <h7 class = "card-title"><%=Time.at(day["time"]).strftime("%A")%>:</h7>
+                        <p class = "card-text"> High: <%=day["temperatureHigh"]%>*F </p>
+                        <p class = "card-text"> Low: <%=day["temperatureLow"]%>*F </p>
+                        <p class = "card-text"> <%=day["summary"]%> </p>
+                    </div>
+                </div>
+                </div>
+                <% end %>   
+        </div>
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

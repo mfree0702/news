@@ -21,10 +21,37 @@
     <title>News</title>
   </head>
   <body>
-
-    <div class="container mt-5">
-      <h1>News</h1>
+    <nav class="navbar navbar-expand-md navbar-light sticky-top">
+        <div class="container">
+        <a class="navbar-brand" href="/">
+            <i class="far fa-newspaper"></i> Newspaper App
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav mr-auto">
+            <a class="nav-item nav-link active" href="/">  Home <span class="sr-only">(current)</span></a>
+            </div>
+        </div>
+        </div>
+    </nav>
+        <div class = "container mt-5">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container class="title_text"">
+                <h1 class="display-4">Morning Briefing</h1>
+                <p class="lead"> Enter Your Location Below </p>
+            </div>
+        </div>
     </div>
+    <div class = "container mt-5">
+    
+    <form action="/news">
+        <label>Location:</label>
+        <input type="text" name="location">
+        <button type="submit" class="btn btn-primary">Submit</submit>
+    </form>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

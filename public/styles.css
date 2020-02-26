@@ -1,0 +1,32 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    font-family: 'Lora', serif;
+}
+
+h2 {
+    font-family: 'Lora', serif;
+}
+.btn-primary {
+    background-color: green
+}
+.navbar {
+    background-color: lightgray;
+}
+
+.title_text {
+    background-color: white;
+}
+
+.jumbotron {
+    /* Background */
+    background-attachment: fixed;
+    background-color: goldenrod;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* Fonts */
+    /* The text-shadow helps the white text stand out better on a darker background */
+    color: black;
+  }

@@ -1,0 +1,10 @@
+      <p> <%=@articles %>
+
+
+          <img src=<%=i["urlToImage"]%>>
+
+                          <h2><%=@mylocation%></h2>
+                <p> <%=@lat%> <%=@lng%> </p>
+
+
+                style= "background-image: url(News_Logo.png)"
